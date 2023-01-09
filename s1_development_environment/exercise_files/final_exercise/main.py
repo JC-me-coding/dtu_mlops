@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 import torch
 import argparse
 import sys
@@ -24,7 +23,7 @@ def train(lr):
     # TODO: Implement training loop here
     model = MyAwesomeModel()
     train_set, _ = mnist()
-    train_data = torch.utils.data.DataLoader(train_set, batch_size=batch_size, shuffle=True, num_workers=4)
+    train_dl = torch.utils.data.DataLoader(train_set, batch_size=batch_size, shuffle=True, num_workers=4)
 
     criterion = torch.nn.CrossEntropyLoss()
     optimizer = torch.optim.SGD(model.parameters(), lr=lr)
@@ -36,7 +35,7 @@ def train(lr):
 
     for epoch in range(epochs):
         running_loss = 0
-        for i, data in enumerate(train_data):
+        for i, data in enumerate(train_dl):
             image,label = data
             optimizer.zero_grad()
             output = model(image.float())
@@ -56,12 +55,12 @@ def evaluate(model_checkpoint):
     model = torch.load(model_checkpoint)
     _, test_set = mnist()
 
-    test_data = torch.utils.data.DataLoader(test_set, batch_size=1, shuffle=False, num_workers=4)
+    test_dl = torch.utils.data.DataLoader(test_set, batch_size=1, shuffle=False, num_workers=4)
     all,true = 0,0
     
     model.eval()
     with torch.no_grad():
-        for data in test_data:
+        for data in test_dl:
             image, label = data
             output = model(image.float())
             _, predicted = torch.max(output.data, 1)

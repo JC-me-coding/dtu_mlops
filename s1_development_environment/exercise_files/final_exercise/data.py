@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 import torch
 import numpy as np
 
@@ -17,7 +16,7 @@ def mnist():
     train_labels = np.concatenate((tr0['labels'],tr1['labels'],tr2['labels'],tr3['labels'],tr4['labels']))
     train_labels = torch.from_numpy(train_labels)
 
-    train = [[train_imgs[i],train_labels[i]] for i in len(train_imgs)]
+    train = [[train_imgs[i],train_labels[i]] for i in range(len(train_imgs))]
     
     #prepare test set
     test_set = np.load(corrupt_mnist + 'test.npz')
@@ -27,6 +26,6 @@ def mnist():
     test_labels = test_set['labels']
     test_labels = torch.from_numpy(test_labels)
     
-    test = [[test_imgs[i],test_labels[i]] for i in len(test_imgs)]
+    test = [[test_imgs[i],test_labels[i]] for i in range(len(test_imgs))]
     
     return train, test
