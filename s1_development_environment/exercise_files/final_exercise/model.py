@@ -7,7 +7,7 @@ class MyAwesomeModel(nn.Module):
         self.conv1 = nn.Conv2d(1, 16, kernel_size=5)
         self.conv2 = nn.Conv2d(16, 32, kernel_size=5)
         self.conv2_drop = nn.Dropout2d()
-        self.fc1 = nn.Linear(320, 32)
+        self.fc1 = nn.Linear(32, 32)
         self.fc2 = nn.Linear(32, 10)
 
     def forward(self, x):
@@ -18,6 +18,6 @@ class MyAwesomeModel(nn.Module):
         x = F.relu(self.fc1(x))
         x = F.dropout(x, training=self.training)
         x = self.fc2(x)
-        return F.log_softmax(x)
+        x = F.log_softmax(x)
         
         return x
