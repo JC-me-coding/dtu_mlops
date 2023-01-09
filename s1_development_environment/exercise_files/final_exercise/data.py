@@ -10,7 +10,6 @@ def mnist():
     tr2 = np.load(corrupt_mnist + 'train_2.npz')
     tr3 = np.load(corrupt_mnist + 'train_3.npz')
     tr4 = np.load(corrupt_mnist + 'train_4.npz')
-    
     train_imgs = np.concatenate((tr0['images'],tr1['images'],tr2['images'],tr3['images'],tr4['images']))
     train_imgs = torch.from_numpy(train_imgs)
     

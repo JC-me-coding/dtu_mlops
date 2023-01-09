@@ -23,11 +23,27 @@ def train(lr):
     # TODO: Implement training loop here
     model = MyAwesomeModel()
     train_set, _ = mnist()
+    train_data = torch.utils.data.DataLoader(train_set, batch_size=batch_size, shuffle=True, num_workers=4)
+
     criterion = torch.nn.CrossEntropyLoss()
     optimizer = torch.optim.SGD(model.parameters(), lr=lr)
     batch_size = 64
-    trainloader = torch.utils.data.DataLoader(train_set, batch_size=batch_size, shuffle=True, num_workers=4)
 
+    train_loss = []
+    epochs = 25
+    model.train()
+
+    for epoch in range(epochs):
+        running_loss = 0
+        for i, data in enumerate(train_data):
+            image,label = data
+            optimizer.zero_grad()
+            output = model(image.float())
+            loss = criterion(output,label)
+            loss.backward()
+            optimizer.step()
+            running_loss += loss.item()
+        train_loss.append(running_loss/25000)
 
 @click.command()
 @click.argument("model_checkpoint")
@@ -40,16 +56,16 @@ def evaluate(model_checkpoint):
     _, test_set = mnist()
 
     test_data = torch.utils.data.DataLoader(test_set, batch_size=1, shuffle=False, num_workers=4)
-    true,all = 0,0
+    all,true = 0,0
     
     model.eval()
     with torch.no_grad():
         for data in test_data:
-            images, labels = data
-            outputs = model(images.float())
-            _, predicted = torch.max(outputs.data, 1)
-            all += labels.size(0)
-            true += (predicted == labels).sum().item()
+            image, label = data
+            output = model(image.float())
+            _, predicted = torch.max(output.data, 1)
+            all += label.size(0)
+            true += (predicted == label).sum().item()
     print('Acc: ', true/all*100)
 
 

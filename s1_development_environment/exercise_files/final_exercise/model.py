@@ -7,8 +7,8 @@ class MyAwesomeModel(nn.Module):
         self.conv1 = nn.Conv2d(1, 16, kernel_size=5)
         self.conv2 = nn.Conv2d(16, 32, kernel_size=5)
         self.conv2_drop = nn.Dropout2d()
-        self.fc1 = nn.Linear(32, 32)
-        self.fc2 = nn.Linear(32, 10)
+        self.fc1 = nn.Linear(32, 128)
+        self.fc2 = nn.Linear(128, 10)
 
     def forward(self, x):
         x = x.unsqueeze(0).permute(1,0,2,3)
