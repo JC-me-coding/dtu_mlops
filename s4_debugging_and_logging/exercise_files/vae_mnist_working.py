@@ -4,6 +4,7 @@ https://github.com/Jackson-Kang/Pytorch-VAE-tutorial/blob/master/01_Variational_
 
 A simple implementation of Gaussian MLP Encoder and Decoder trained on MNIST
 """
+import cProfile
 import torch
 import torch.nn as nn
 import torchvision.transforms as transforms

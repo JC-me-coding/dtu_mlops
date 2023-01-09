@@ -27,12 +27,11 @@ def train(lr):
     optimizer = optim.SGD(model.parameters(), lr=lr, momentum=0.9)
     train_set, _ = mnist()
     batch_size = 128
-    trainloader = torch.utils.data.DataLoader(train_set, batch_size=batch_size,
-                                          shuffle=True, num_workers=4)
+    trainloader = torch.utils.data.DataLoader(train_set, batch_size=batch_size, num_workers=4)
     trainingloss = []
-    xaxislol = np.arange(1,21)
+    x_axis = np.arange(1,26)
     model.train()
-    for epoch in range(20):
+    for epoch in range(25):
         running_loss = 0.0
         for i, data in enumerate(trainloader):
             inputs,labels = data
@@ -45,7 +44,7 @@ def train(lr):
         trainingloss.append(running_loss/25000)
     
     torch.save(model, 'trained_model.pt')
-    plt.plot(xaxislol,trainingloss)
+    plt.plot(x_axis,trainingloss)
     plt.ylabel('training loss')
     plt.xlabel('epoch')
     plt.savefig('training.png')
@@ -58,8 +57,7 @@ def evaluate(model_checkpoint):
     # TODO: Implement evaluation logic here
     model = torch.load(model_checkpoint)
     _, test_set = mnist()
-    testloader = torch.utils.data.DataLoader(test_set, batch_size=1,
-                                         shuffle=False, num_workers=4)
+    testloader = torch.utils.data.DataLoader(test_set, batch_size=1, shuffle=False, num_workers=4)
     correct = 0
     tot = 0
     model.eval()
