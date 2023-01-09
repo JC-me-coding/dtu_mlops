@@ -26,6 +26,6 @@ def mnist():
     
     tslabelstmp = loadtest['labels']
     tslabels = torch.from_numpy(tslabelstmp)
-    train = [[train_imgs[i],trlabels[i]] for i in range(len(train_imgs))]
+    train = [[train_imgs[i],train_labels[i]] for i in range(len(train_imgs))]
     test = [[test_imgs[i],tslabels[i]] for i in range(len(test_imgs))]
     return train, test
