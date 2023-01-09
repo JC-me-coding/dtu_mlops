@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import torch
 import numpy as np
 
@@ -29,3 +30,14 @@ def mnist():
     test = [[test_imgs[i],test_labels[i]] for i in range(len(test_imgs))]
     
     return train, test
+=======
+import numpy as np
+import torch
+
+
+def mnist():
+    # exchange with the corrupted mnist dataset
+    train = torch.randn(50000, 784)
+    test = torch.randn(10000, 784) 
+    return train, test
+>>>>>>> 15c2039a32a770c400344a736a2bfbf4ff4fb4ed
