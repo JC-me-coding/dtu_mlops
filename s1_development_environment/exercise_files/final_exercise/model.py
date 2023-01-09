@@ -22,12 +22,3 @@ class MyAwesomeModel(nn.Module):
         x = F.log_softmax(x)
         
         return x
-=======
-from torch import nn
-
-
-class MyAwesomeModel(nn.Module):
-    def __init__(self):
-        super().__init__()
-        self.fc1 = nn.Linear(784, 128)
->>>>>>> 15c2039a32a770c400344a736a2bfbf4ff4fb4ed
