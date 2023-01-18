@@ -275,6 +275,7 @@ outputs/
 FashionMNIST/
 s9_scalable_applications/exercise_files/lfw/
 s9_scalable_applications/lfw/
+data/MNIST/
 
 # vs code
 .vscode/settings.json
