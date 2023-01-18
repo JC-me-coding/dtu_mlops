@@ -273,6 +273,7 @@ outputs/
 
 # datasets
 FashionMNIST/
+s9_scalable_applications/lfw
 
 # vs code
 .vscode/settings.json
